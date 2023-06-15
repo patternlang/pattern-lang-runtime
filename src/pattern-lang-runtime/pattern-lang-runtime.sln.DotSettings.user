@@ -1,0 +1,17 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4ffcf0fd_002Dfc6b_002D4461_002Db4a0_002D00ce5588a149/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="PatternObjectBaseTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternObjectBaseTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternNamespaceTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternDomainTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternObjectBaseTypeTests.GetDefault_StateUnderTest_ExpectedBehavior&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.Properties.PatternProperty_1Tests.CanCallGetValue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.Properties.PatternProperty_1Tests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=50181db4_002D4511_002D4b8a_002Da12d_002D8721e8af70f2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CanConstruct" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternTypeTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::CA662374-432C-424C-9870-1FAEC8E357A6::net6.0::PatternLang.Runtime.Tests.Types.PatternObjectBaseTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

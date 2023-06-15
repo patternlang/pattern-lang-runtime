@@ -1,0 +1,12 @@
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\bin\Debug\net7.0\PatternLang.deps.json
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\bin\Debug\net7.0\PatternLang.dll
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\bin\Debug\net7.0\PatternLang.pdb
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\pattern-lang-runtime.csproj.AssemblyReference.cache
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\pattern-lang-runtime.GeneratedMSBuildEditorConfig.editorconfig
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\pattern-lang-runtime.AssemblyInfoInputs.cache
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\pattern-lang-runtime.AssemblyInfo.cs
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\pattern-lang-runtime.csproj.CoreCompileInputs.cache
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\PatternLang.dll
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\refint\PatternLang.dll
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\PatternLang.pdb
+c:\GitHub\PatternLang\pattern-lang-runtime\src\pattern-lang-runtime\pattern-lang-runtime\obj\Debug\net7.0\ref\PatternLang.dll
