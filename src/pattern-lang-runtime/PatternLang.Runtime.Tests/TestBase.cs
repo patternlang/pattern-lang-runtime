@@ -11,7 +11,5 @@ public abstract class TestBase
         get;
     }
 
-    protected TestBase(ITestOutputHelper outputHelper) {
-        OutputHelper = outputHelper;
-    }
+    protected TestBase(ITestOutputHelper outputHelper) => OutputHelper = outputHelper;
 }

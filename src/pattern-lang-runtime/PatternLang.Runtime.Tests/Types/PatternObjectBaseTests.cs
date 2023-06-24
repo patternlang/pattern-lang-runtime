@@ -1,43 +1,59 @@
-#pragma warning disable CS8625
-namespace PatternLang.Runtime.Tests.Types;
 
 using System.Reflection;
 
 using FluentAssertions.Specialized;
+
+using Newtonsoft.Json.Linq;
+
 using PatternLang.Types.Members;
 using PatternLang.Types.Properties;
 
-public class PatternObjectSubclass : PatternObjectBase
+using static PatternLang.Types.PatternInteger;
+
+#pragma warning disable CS8625
+namespace PatternLang.Runtime.Tests.Types;
+public class PatternObjectSubclass<TPatternType, TClrType> 
+    : PatternObjectBase<TPatternType, TClrType>
+    where TPatternType : PatternObjectBaseType<TPatternType, TClrType>, IPatternObject
 {
+    public PatternObjectSubclass() : base() { }
+
+    private PatternObjectSubclass(PatternNamespace @namespace, PatternDomain domain) 
+        : base(@namespace, domain) { }
+
+    private PatternObjectSubclass<TPatternType, TClrType>? _protectedDefault = null;
+    protected override PatternObjectBase<TPatternType, TClrType> ProtectedDefault
+        => _protectedDefault ??= new PatternObjectSubclass<TPatternType, TClrType>();
+
     public override string ToString()
         => base.ToString() ?? GetType().FullName ?? GetType().Name;
 
-    public override PatternObjectBase GetDefault(params object?[] args)
-        => throw new NotImplementedException();
+    public override PatternObjectBase<TPatternType, TClrType> GetDefault(params object?[] args)
+        => new PatternObjectSubclass<TPatternType, TClrType>(
+            args.OfType<PatternNamespace>().FirstOrDefault(PatternNamespace.DEFAULT),
+            args.OfType<PatternDomain>().FirstOrDefault(PatternDomain.DEFAULT)
+            );
 }
 
 public class PatternObjectBaseTests : TestBase
 {
-    private readonly PatternObjectBase _testClass;
-    private readonly PatternObjectBaseType _patternType;
+    private readonly PatternString _testClass;
+    private readonly PatternString.PatternStringType _patternType;
 
     public PatternObjectBaseTests(ITestOutputHelper outputHelper): base(outputHelper)
     {
-        _patternType = new PatternObjectBaseType
-        {
-            Domain = _domain,
-            Namespace = _namespace,
-        };
+        _patternType = 
+            new PatternString.PatternStringType(_namespace, _domain);
 
-        _testClass = new PatternObjectSubclass
-            { PatternType = _patternType, };
+        _testClass = new PatternString(nameof(PatternObjectBaseTests), _namespace, _domain)
+        { PatternType = _patternType, };
     }
 
     [Fact]
     public void CanInitialize()
     {
         // Act
-        var instance = new PatternObjectSubclass
+        var instance = new PatternObjectSubclass<PatternString.PatternStringType, string>
             { PatternType = _patternType,};
 
         // Assert
@@ -50,8 +66,8 @@ public class PatternObjectBaseTests : TestBase
     public void CannotInitializeWithNullPatternType()
     {
         ExceptionAssertions<ArgumentNullException>? result = FluentActions.Invoking(
-            static () => new PatternObjectSubclass
-        {
+            static () => new PatternObjectSubclass<PatternString.PatternStringType, string>
+            {
             PatternType = default,
         }).Should().Throw<ArgumentNullException>();
 

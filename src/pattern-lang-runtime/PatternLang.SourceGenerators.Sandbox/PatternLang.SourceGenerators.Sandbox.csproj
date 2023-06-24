@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>PatternLang.SourceGenerators.Sandbox</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PatternLang.Runtime\PatternLang.Runtime.csproj" />
+    <ProjectReference Include="..\PatternLang.SourceGenerators.Attributes\PatternLang.SourceGenerators.Attributes.csproj" />
+    <ProjectReference Include="..\PatternLang.SourceGenerators\PatternLang.SourceGenerators.csproj"
+                  OutputItemType="Analyzer"
+                  ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+</Project>

@@ -6,42 +6,40 @@ using System;
 
 using Xunit;
 
-namespace PatternLang.Runtime.Tests.Types
-{
-    using System.Reflection;
+using System.Reflection;
 
-    public class PatternObjectBaseTypeTests : TestBase
+namespace PatternLang.Runtime.Tests.Types;
+public class PatternObjectBaseTypeTests : TestBase
+{
+
+
+    public PatternObjectBaseTypeTests(ITestOutputHelper outputHelper)
+        : base(outputHelper)
     {
 
+    }
 
-        public PatternObjectBaseTypeTests(ITestOutputHelper outputHelper)
-            : base(outputHelper)
+    [Fact]
+    public void GetDefault_StateUnderTest_ExpectedBehavior()
+    {
+        string methodName = MethodBase.GetCurrentMethod()!.Name;
+
+        // Arrange
+        var args = new object?[]
         {
-
-        }
-
-        [Fact]
-        public void GetDefault_StateUnderTest_ExpectedBehavior()
-        {
-            string methodName = MethodBase.GetCurrentMethod()!.Name;
-
-            // Arrange
-            var args = new object?[]
-            {
-                (IPatternType?)null,
-                _namespace,
-                _domain,
-                nameof(TestDefinition),
-            };
+            _namespace,
+            _domain,
+        };
 
 
-            // Act
-            TestDefinition result = PatternObjectBaseType.GetDefault<TestDefinition>(args);
+        // Act
+        TestDefinition result = 
+            PatternObjectBaseType<PatternString.PatternStringType, string>
+                .GetDefault<TestDefinition>(args);
 
-            // Assert
-            result.Should().NotBeNull();
+        // Assert
+        result.Should().NotBeNull();
 
-            OutputHelper.WriteLine($"{methodName}: Created Default instance: {result}");
-        }
+        OutputHelper.WriteLine($"{methodName}: Created Default instance: {result}");
     }
 }

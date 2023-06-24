@@ -1,30 +1,32 @@
 // ReSharper disable BuiltInTypeReferenceStyle
-#pragma warning disable CS8625
-namespace PatternLang.Runtime.Tests.Types.Properties;
 
-using TPropertyValue = System.String;
+using TPropertyValue = PatternLang.Types.PatternString.PatternStringType;
 using System;
 using Xunit;
 using FluentAssertions;
 using PatternLang.Types;
 using PatternLang.Types.Properties;
 
-public class PatternProperty_1Tests
+#pragma warning disable CS8625
+namespace PatternLang.Runtime.Tests.Types.Properties;
+public class PatternPropertyTests
 {
-    private readonly PatternProperty<TPropertyValue> _testClass;
+    private readonly PatternDomain _domain = (PatternDomain)"Global";
+    private readonly PatternNamespace _ns = (PatternNamespace)"PatternLang.Tests";
+    private readonly PatternProperty<TPropertyValue, string> _testClass;
     private readonly object?[] _args;
 
-    public PatternProperty_1Tests()
+    public PatternPropertyTests()
     {
-        _args = new object?[] { "Test", (PatternNamespace)"PatternLang.Tests", (PatternDomain)"Global", };
-        _testClass = new PatternProperty<TPropertyValue>(_args);
+        _args = new object?[] { "Test", _ns, _domain, };
+        _testClass = new PatternProperty<TPropertyValue, string>(_args);
     }
 
     [Fact]
     public void CanConstruct()
     {
         // Act
-        var instance = new PatternProperty<TPropertyValue>(_args);
+        var instance = new PatternProperty<TPropertyValue, string>(_args);
 
         // Assert
         instance.Should().NotBeNull();
@@ -32,30 +34,28 @@ public class PatternProperty_1Tests
 
     [Fact]
     public void CannotConstructWithNullArgs()
-    {
-        FluentActions.Invoking(() => new PatternProperty<TPropertyValue>(null)).Should().Throw<ArgumentNullException>();
-    }
+        => FluentActions.Invoking(()
+            => new PatternProperty<TPropertyValue, string>(null)).Should().Throw<ArgumentNullException>();
 
     [Fact]
     public void CanCallGetDefault()
     {
         // Arrange
-        var args = new[] { new object(), new object(), new object(),};
+        var args = new[] { new object(), _ns, _domain, };
 
         // Act
         var result = _testClass.GetDefault(args);
 
         // Assert
-        result.GetValue("Default")
+        string? value = result.GetValue(_domain);
+
+        value
             .Should()
             .BeNull();
     }
 
     [Fact]
-    public void CannotCallGetDefaultWithNullArgs()
-    {
-        FluentActions.Invoking(() => _testClass.GetDefault(null)).Should().Throw<ArgumentNullException>();
-    }
+    public void CannotCallGetDefaultWithNullArgs() => FluentActions.Invoking(() => _testClass.GetDefault(null)).Should().Throw<ArgumentNullException>();
 
     [Fact]
     public void CanCallGetValue()
@@ -68,7 +68,7 @@ public class PatternProperty_1Tests
 
         // Assert
         result.Some.Should()
-            .NotBe(result.None);
+            .BeTrue();
         result.Value.Should()
             .NotBe(result.None);
         result.Should()
@@ -78,49 +78,60 @@ public class PatternProperty_1Tests
     [Fact]
     public void CanCallSetValueWithPatternSafeValueOfTPropertyValueAndPatternDomain()
     {
+        const string V = "TestValue703541787";
         // Arrange
-        var value = new PatternSafeValue<TPropertyValue>("TestValue703541787");
+        var value = new PatternSafeValue<string>(V);
         var domain = new PatternDomain();
 
         // Act
-        var result = _testClass.SetValue(value, domain);
+        string? result = _testClass.SetValue(value, domain);
 
         // Assert
-        throw new NotImplementedException("Create or modify test");
+        result.Should().NotBeNull().And.Be(V);
     }
 
     [Fact]
-    public void CannotCallSetValueWithPatternSafeValueOfTPropertyValueAndPatternDomainWithNullValue()
-    {
-        FluentActions.Invoking(() => _testClass.SetValue(default(PatternSafeValue<TPropertyValue>), new PatternDomain())).Should().Throw<ArgumentNullException>();
-    }
+    public void CallSetValueWithDefaultValueAndPatternDomainWithUnknownValue()
+        => _testClass.SetValue(
+                default(string),
+                "Unknown")
+                .Should()
+                .Be(_testClass.Value.None);
+
+    [Fact]
+    public void CallSetValueWithDefaultPatternSafeValueOfTPropertyValueAndPatternDomainWithUnknownValue()
+        => _testClass.SetValue(
+                default(PatternSafeValue<string>),
+                "Unknown")
+                .Should()
+                .Be(_testClass.Value.None);
 
     [Fact]
     public void SetValueWithPatternSafeValueOfTPropertyValueAndPatternDomainPerformsMapping()
     {
         // Arrange
-        var value = new PatternSafeValue<TPropertyValue>("TestValue1157437061");
+        var value = new PatternSafeValue<string>("TestValue1157437061");
         var domain = new PatternDomain();
 
         // Act
-        var result = _testClass.SetValue(value, domain);
+        PatternSafeValue<string> result = _testClass.SetValue(value, domain);
 
         // Assert
-        result.Value.Should().BeSameAs(value);
+        result.Value.Should().BeSameAs(value.Value);
     }
 
     [Fact]
     public void CanCallSetValueWithTPropertyValueAndPatternDomain()
     {
         // Arrange
-        var value = "TestValue91705997";
+        const string V = "TestValue91705997";
         var domain = new PatternDomain();
 
         // Act
-        var result = _testClass.SetValue(value, domain);
+        string? result = _testClass.SetValue(V, domain);
 
         // Assert
-        throw new NotImplementedException("Create or modify test");
+        result.Should().NotBeNull().And.Be(V);
     }
 
     [Fact]
@@ -131,7 +142,7 @@ public class PatternProperty_1Tests
         var domain = new PatternDomain();
 
         // Act
-        var result = _testClass.SetValue(value, domain);
+        PatternSafeValue<string> result = _testClass.SetValue(value, domain);
 
         // Assert
         result.Value.Should().BeSameAs(value);

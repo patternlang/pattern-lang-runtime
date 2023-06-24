@@ -58,26 +58,14 @@ public class PatternTypeTests
     }
 
     [Fact]
-    public void NameIsInitializedCorrectly()
-    {
-        _testClass.Name.Should().Be(_name);
-    }
+    public void NameIsInitializedCorrectly() => _testClass.Name.Should().Be(_name);
 
     [Fact]
-    public void NamespaceIsInitializedCorrectly()
-    {
-        _testClass.Namespace.Should().Be(_namespace);
-    }
+    public void NamespaceIsInitializedCorrectly() => _testClass.Namespace.Should().Be(_namespace);
 
     [Fact]
-    public void SuperTypeIsInitializedCorrectly()
-    {
-        _testClass.SuperType.Should().BeSameAs(_superType);
-    }
+    public void SuperTypeIsInitializedCorrectly() => _testClass.SuperType.Should().BeSameAs(_superType);
 
     [Fact]
-    public void DomainIsInitializedCorrectly()
-    {
-        _testClass.Domain.Should().Be(_domain);
-    }
+    public void DomainIsInitializedCorrectly() => _testClass.Domain.Should().Be(_domain);
 }
